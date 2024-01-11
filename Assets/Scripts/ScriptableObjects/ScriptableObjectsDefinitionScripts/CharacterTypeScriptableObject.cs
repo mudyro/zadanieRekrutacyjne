@@ -6,10 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterTypeScriptableObject", menuName = "ScriptableObjects/CharacterType")]
 public class CharacterTypeScriptableObject : ScriptableObject
 {
-    [Range(2,4)]
-    public float characterVelocity = 2,
-    characterRotationRadius = 2,
-    characterHealth = 2;
+    [Range(2,10)]
+    public float characterSpeed = 2;
+
+    [Range(90,270)]
+    public int characterAngularSpeed = 120;
+
+    [Range(2,5)]
+    public int characterHealth = 5;
 
     void Awake()
     {
@@ -18,8 +22,8 @@ public class CharacterTypeScriptableObject : ScriptableObject
 
     void RandomizeCharacterStats()
     {
-        characterVelocity = Random.Range(2f,4f);
-        characterRotationRadius = Random.Range(2f,4f);
-        characterHealth = Random.Range(2f,4f);
+        characterSpeed = Random.Range(2f,10f);
+        characterAngularSpeed = Random.Range(90,270);
+        characterHealth = Random.Range(2,10);
     } 
 }

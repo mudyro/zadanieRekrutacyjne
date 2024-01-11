@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
+    public CharacterTypeScriptableObject characterType;
+
     float _characterSpeed;
-    float _characterRotationRadius;
-    float _characterHealth;
+    int _characterAngularSpeed;
+    int _characterHealth;
 
     public bool isLeader;
 
@@ -21,6 +24,14 @@ public class Character : MonoBehaviour
     void Awake()
     {
         characterAgent = GetComponent<NavMeshAgent>();
+
+        _characterSpeed = characterType.characterSpeed;
+        characterAgent.speed = _characterSpeed;
+
+        _characterAngularSpeed = characterType.characterAngularSpeed;
+        characterAgent.angularSpeed = _characterAngularSpeed;
+
+        _characterHealth = characterType.characterHealth;
     }
 
     void MoveToMouseClick()
@@ -43,6 +54,8 @@ public class Character : MonoBehaviour
 
     void FixedUpdate()
     {
+        UpdateCharacterParameters();
+
         if(isLeader)
         {
             MoveToMouseClick();
@@ -51,5 +64,16 @@ public class Character : MonoBehaviour
         {
             FollowLeadingCharacter();
         }
+    }
+
+    void UpdateCharacterParameters()
+    {
+        _characterSpeed = characterType.characterSpeed;
+        characterAgent.speed = _characterSpeed;
+
+        _characterHealth = characterType.characterHealth;
+        _characterAngularSpeed = characterType.characterAngularSpeed;
+
+        _characterHealth = characterType.characterHealth;
     }
 }
