@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31d23b57371418449b7556ae1f39f05, type: 3}
   m_Name: CharacterType3
   m_EditorClassIdentifier: 
-  characterVelocity: 0
+  characterSpeed: 2
   characterRotationRadius: 0
-  characterHealth: 0
+  characterHealth: 5
