@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +12,21 @@ public class ButtonEventsManager : MonoBehaviour
 
     int _buttonIndex;
 
-    ButtonEventsManager[] _buttonEventsManagers;
+    GameObject[] _buttonsGameobjects;
 
     void Awake()
     {
         _followingCharactersFormation = FindAnyObjectByType<FollowingCharactersFormation>();
         _allCharacters = _followingCharactersFormation.allCharacters;
 
-        _buttonEventsManagers = FindObjectsOfType<ButtonEventsManager>();
+        _buttonsGameobjects = FindObjectOfType<ButtonSpawner>().buttonsGameobjects;
+
+        // foreach (var _button in _buttonsGameobjects)
+        // {
+        //     _button.GetComponent<Button>().onClick.AddListener(SetLeadingPlayer);
+        // }
+
+        // GetComponent<Button>().onClick.AddListener(SetLeadingPlayer);
     }
 
     public void SetLeadingPlayer()
@@ -41,10 +49,15 @@ public class ButtonEventsManager : MonoBehaviour
 
     public void UpdateButtonsState()
     {
-        foreach(ButtonEventsManager _button in _buttonEventsManagers)
+        foreach(var _button in _buttonsGameobjects)
         {
             _button.GetComponent<Button>().interactable = true;
         }
         gameObject.GetComponent<Button>().interactable = false;
+    }
+
+    void OnDestroy()
+    {
+        gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
     }
 }
