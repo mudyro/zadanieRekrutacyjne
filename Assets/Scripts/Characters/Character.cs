@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 
     public bool isLeader;
 
-    public int positionInFormationIndex = 999;
+    public int characterIndex = 999;
 
     RaycastHit _hit = new RaycastHit();
 
@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
 
     void FollowLeadingCharacter()
     {
-        characterAgent.SetDestination(FollowingCharactersFormation.formationPositions[positionInFormationIndex]);
+        characterAgent.SetDestination(FollowingCharactersFormation.formationPositions[characterIndex]);
     }    
 
     void FixedUpdate()
