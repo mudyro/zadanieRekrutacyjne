@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 
     public bool isLeader;
 
-    public int positionInFormationIndex;
+    public int positionInFormationIndex = 999;
 
     RaycastHit _hit = new RaycastHit();
 
