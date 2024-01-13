@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Buttons\ButtonSpawner.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
+    <Compile Include="Assets\Scripts\Visuals\ColorsManager.cs" />
     <Compile Include="Assets\Scripts\Buttons\ButtonEventsManager.cs" />
     <Compile Include="Assets\Scripts\Characters\FollowingCharactersFormation.cs" />
   </ItemGroup>

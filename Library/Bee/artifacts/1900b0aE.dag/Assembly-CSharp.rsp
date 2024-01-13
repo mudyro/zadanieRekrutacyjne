@@ -362,6 +362,7 @@
 "Assets/Scripts/Characters/Character.cs"
 "Assets/Scripts/Characters/FollowingCharactersFormation.cs"
 "Assets/Scripts/ScriptableObjects/ScriptableObjectsDefinitionScripts/CharacterTypeScriptableObject.cs"
+"Assets/Scripts/Visuals/ColorsManager.cs"
 -langversion:9.0
 
 /deterministic
