@@ -34,12 +34,7 @@ public class ButtonSpawner : MonoBehaviour
         foreach (var _button in buttonsGameobjects)
         {
             _button.GetComponent<Button>().onClick.AddListener(_button.GetComponent<ButtonEventsManager>().SetLeadingPlayer);
-            _button.GetComponent<Button>().onClick.AddListener(Donothing);
+            _button.GetComponent<Button>().onClick.AddListener(_button.GetComponent<ButtonEventsManager>().UpdateButtonsState);
         }
-    }
-
-    void Donothing()
-    {
-
     }
 }

@@ -10,30 +10,21 @@ public class ButtonEventsManager : MonoBehaviour
 
     Character[] _allCharacters;
 
-    int _buttonIndex;
-
     GameObject[] _buttonsGameobjects;
 
     void Awake()
     {
         _followingCharactersFormation = FindAnyObjectByType<FollowingCharactersFormation>();
         _allCharacters = _followingCharactersFormation.allCharacters;
-
         _buttonsGameobjects = FindObjectOfType<ButtonSpawner>().buttonsGameobjects;
-
-        // foreach (var _button in _buttonsGameobjects)
-        // {
-        //     _button.GetComponent<Button>().onClick.AddListener(SetLeadingPlayer);
-        // }
-
-        // GetComponent<Button>().onClick.AddListener(SetLeadingPlayer);
     }
 
     public void SetLeadingPlayer()
     {
         foreach(Character _character in _allCharacters)
         {
-            if(_character.isLeader)
+            if(_character.isLeader &&
+            transform.GetSiblingIndex() - 1 != _character.transform.GetSiblingIndex())
             {
                 _character.isLeader = false;
             }
@@ -53,7 +44,8 @@ public class ButtonEventsManager : MonoBehaviour
         {
             _button.GetComponent<Button>().interactable = true;
         }
-        gameObject.GetComponent<Button>().interactable = false;
+
+        GetComponent<Button>().interactable = false;
     }
 
     void OnDestroy()
