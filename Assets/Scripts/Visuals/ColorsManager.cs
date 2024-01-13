@@ -55,7 +55,6 @@ public class ColorsManager : MonoBehaviour
 
     void CreateButtonColorBlock()
     {
-        print(characterColor);
         _normal = new Color(r,g,b,a);
         _highlighted = new Color(r*0.9f,g*0.9f,b*0.9f,a);
         _pressed = new Color(r*0.75f,g*0.75f,b*0.75f,a);

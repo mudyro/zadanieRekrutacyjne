@@ -14,6 +14,7 @@ public class FollowingCharactersFormation : MonoBehaviour
 
     void Awake()
     {
+        formationPositions = new Vector3[transform.childCount];
         allCharacters = FindObjectsOfType<Character>();
 
         AssignFormationPositions();
