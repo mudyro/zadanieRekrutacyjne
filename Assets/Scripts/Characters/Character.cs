@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,9 @@ using UnityEngine.AI;
 public class Character : MonoBehaviour
 {
     public CharacterTypeScriptableObject characterType;
+
+    float _closestDistanceToLeader = 2;
+    float _currentDistanceToLeader = 999;
 
     float _characterSpeed;
     int _characterAngularSpeed;
@@ -49,8 +53,30 @@ public class Character : MonoBehaviour
 
     void FollowLeadingCharacter()
     {
-        characterAgent.SetDestination(FollowingCharactersFormation.formationPositions[characterIndex]);
+        if(_currentDistanceToLeader > _closestDistanceToLeader)
+        {
+            characterAgent.SetDestination(FollowingCharactersFormation.formationPositions[characterIndex]);
+        }
+        else
+        {
+            characterAgent.speed = 0;
+        }
     }    
+
+    void CalculateCurrentDistanceToLeader()
+    {
+        GameObject[] _charactersGameObjects = new GameObject[transform.parent.childCount];
+
+        for (int i = 0; i < transform.parent.childCount; i++)
+        {
+            _charactersGameObjects[i] = transform.parent.GetChild(i).gameObject;
+            
+            if(_charactersGameObjects[i].GetComponent<Character>().isLeader)
+            {
+                _currentDistanceToLeader = UnityEngine.Vector3.Distance(transform.position,_charactersGameObjects[i].transform.position);
+            }
+        }
+    }
 
     void FixedUpdate()
     {
@@ -62,6 +88,7 @@ public class Character : MonoBehaviour
         }
         else
         {
+            CalculateCurrentDistanceToLeader();
             FollowLeadingCharacter();
         }
     }
