@@ -23,13 +23,11 @@ public class ButtonEventsManager : MonoBehaviour
     {
         foreach(Character _character in _allCharacters)
         {
-            if(_character.isLeader &&
-            transform.GetSiblingIndex() - 1 != _character.transform.GetSiblingIndex())
+            if(NotLeaderButtonClicked(_character))
             {
                 _character.isLeader = false;
             }
-            else if(!_character.isLeader && 
-            (transform.GetSiblingIndex() - 1 == _character.transform.GetSiblingIndex()))
+            else if(FollowingCharacterButtonClicked(_character))
             {
                 _character.isLeader = true;
             }
@@ -52,4 +50,24 @@ public class ButtonEventsManager : MonoBehaviour
     {
         gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
     }
+
+    bool NotLeaderButtonClicked(Character _characterToCheck)
+    {
+        return
+        (
+            _characterToCheck.isLeader &&
+            (transform.GetSiblingIndex() - 1 != _characterToCheck.transform.GetSiblingIndex())
+        );
+    }
+
+    bool FollowingCharacterButtonClicked(Character _characterToCheck)
+    {
+        return
+        (
+            (!_characterToCheck.isLeader) && 
+            (transform.GetSiblingIndex() - 1 == _characterToCheck.transform.GetSiblingIndex())
+        );
+    }
+
+
 }
